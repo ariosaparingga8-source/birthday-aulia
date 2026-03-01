@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aulia 💗</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Arial', sans-serif;
+  background:linear-gradient(135deg,#ff9acb,#ffd1e8);
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.page{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.active{
+  display:flex;
+}
+
+/* BUTTON */
+button{
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:#ff4fa3;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ff2f92;
+}
+
+/* SLIDER */
+#slider img{
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  margin:15px;
+}
+
+/* COUNTDOWN */
+#count{
+  font-size:40px;
+  margin:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPEN PAGE -->
+<div class="page active" id="open">
+  <h1>💌 Untuk Aulia 💌</h1>
+  <p>Klik ya sayang 💗</p>
+  <button onclick="start()">Klik Aku</button>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="page" id="countdown">
+  <h2>Siap yaa 💕</h2>
+  <div id="count">10</div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page" id="main">
+
+  <h1>🎂 Happy Birthday 🎂</h1>
+  <h2>Aulia Putri Maharani 💖</h2>
+
+  <div id="slider">
+    <img id="photo" src="1.jpg">
+  </div>
+
+  <p>Semoga selalu bahagia, sehat, dan aku selalu sayang kamu 💞</p>
+
+  <audio id="music" src="musik.mp3" loop></audio>
+
+</div>
+
+
+<script>
+
+let photos = ["1.jpg","2.jpg","3.jpg","4.jpg"];
+let index = 0;
+let count = 10;
+
+function start(){
+
+  document.getElementById("open").classList.remove("active");
+  document.getElementById("countdown").classList.add("active");
+
+  let timer = setInterval(()=>{
+
+    count--;
+    document.getElementById("count").innerText = count;
+
+    if(count==0){
+      clearInterval(timer);
+      showMain();
+    }
+
+  },1000);
+
+}
+
+function showMain(){
+
+  document.getElementById("countdown").classList.remove("active");
+  document.getElementById("main").classList.add("active");
+
+  document.getElementById("music").play();
+
+  setInterval(()=>{
+
+    index++;
+    if(index>=photos.length) index=0;
+
+    document.getElementById("photo").src = photos[index];
+
+  },3000);
+
+}
+
+</script>
+
+</body>
+</html>
